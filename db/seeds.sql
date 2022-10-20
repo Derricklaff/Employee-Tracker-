@@ -4,7 +4,7 @@ INSERT INTO department (name)
         ('FINANCE'),
         ('LEGAL');
 
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
     VALUES ('Sales Lead', 100000, 1),
     ('Salesperson', 85000, 1),
     ('Lead Engineer', 135000, 2),
@@ -14,7 +14,7 @@ INSERT INTO role (title, salary, department_id)
     ('Legal Team Lead', 220000, 4),
     ('Attorney', 186000, 4);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, roles_id, manager_id)
     VALUES ('Jane', 'Doe', 1, NULL),
         ('James', 'Xalis', 2, 1),
         ('Miguel', 'Gallardo', 3, NULL),
@@ -25,5 +25,5 @@ INSERT INTO employee (first_name, last_name, role_id, manager_id)
         ('Ian', 'Porter', 8, 7);
 
 SELECT * FROM department;
-SELECT * FROM role;
+SELECT * FROM roles;
 SELECT * FROM employee;
