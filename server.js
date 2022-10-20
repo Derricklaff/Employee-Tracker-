@@ -117,9 +117,52 @@ let viewByDepartmentQuestions = [
 
 let viewByManagerQuestions = [
     {
-        type: "list",
-        name: "whichManager",
-        message: "Which Manager would you like to check?",
+        type: 'list',
+        name: 'whichManager',
+        message: 'Which Manager would you like to check?',
         choices: []
     }
 ]
+
+function askInit() {
+    inquirer.prompt(initialQuestion).then((answers) => {
+        switch (answers.whatToDo) {
+            case 'View All Employees':
+                getEmployees();
+                break;
+            case 'View All Roles':
+                getRoles();
+                break;
+            case 'View All Departments':
+                getDepartments();
+                break;
+            case 'Add Department':
+                addDepartment();
+                break;
+            case 'Add Role':
+                addRole();
+                break;
+            case 'Add Employee':
+                addEmployee();
+                break;
+            case 'Update Employee Role':
+                updateEmployeeRole();
+                break;
+            case 'Update Employee Manager':
+                updateEmployeeManager();
+                break;
+            case 'View Employees by Department':
+                viewByDepartment();
+                break;
+            case 'View Employee by Manager':
+                viewByManager();
+                break;
+            case 'Quit':
+                console.log('Good Bye!');
+                process.exit();
+                break;
+            default:
+                break;
+        }
+    })
+};
