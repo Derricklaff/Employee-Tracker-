@@ -166,3 +166,53 @@ function askInit() {
         }
     })
 };
+
+let getEmployees = () => {
+    db.query("SELECT * FROM employee;", (err, data) => {
+        console.table(data);
+        askInit();
+    })
+};
+
+let getRoles = () => {
+    db.query("SELECT * FROM role;", (err, data) => {
+        console.table(data);
+        askInit();
+    })
+};
+
+let getDepartments = () => {
+    db.query("SELECT * FROM department;", (err, data) => {
+        console.table(data);
+        askInit();
+    })
+};
+
+let addDepartment = () => {
+    inquirer.prompt(whichDepartment)
+        .then((response) => {
+            db.query(`INSERT INTO department (name) VALUES (?);`, [response.departmentName], (err, data) => {
+                console.log("\n-----------------------------------------\n")
+                console.log("New department has been successfully added!")
+                console.log("\n-----------------------------------------\n")
+                askInit();
+            })
+        })
+};
+
+let addRole = () => {
+    db.query("SELECT * FROM department;", (err, data) => {
+        whichRole[2].choices = data.map((element) => ({ value: element.id, name: element.name }));
+        inquirer.prompt(whichRole)
+            .then((response) => {
+                db.query(`INSERT INTO role (title, salary, department_id) VALUES (?,?,?);`,
+                    [response.roleName, response.salary, response.whichDepart],
+                    (err, data) => {
+                        console.log("\n-----------------------------------------\n")
+                        console.log("New role has been successfully added!")
+                        console.log("\n-----------------------------------------\n")
+                        askInit();
+                    })
+            })
+    })
+};
